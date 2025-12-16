@@ -58,11 +58,12 @@ example :- '''
 class MyError(Exception):
     def __init__(self, message="this is a custom error"):
         self.message = message
+        super().__init__(message)
+
     def __str__(self):
-        return "{self.message}"
+        return f"{self.message}"
 
 try:
-    num = input("Enter number:") # enter a string
-except MyError as e:
-    print("Error occurred")
-    raise
+    num = int(input("Enter number:")) # enter a string
+except ValueError as e:
+    raise MyError() from e
