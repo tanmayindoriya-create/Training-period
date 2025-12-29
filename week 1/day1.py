@@ -15,3 +15,34 @@ Checking an element's existence in a list has a time complexity of O(n) as the l
 while
 checking existence of an element in a set has time complexity of O(1) because sets use hash tables to store elements
 """
+
+# Print/find/remove duplicate elements from an array, without using any inbuilt functions.
+
+arr = [1,6,4,2,8,8,1]
+
+for i in range(len(arr)):
+    for j in range(i + 1, len(arr)):
+        if arr[i] == arr[j]:
+            print(arr[i])
+            break
+
+# Write a function that returns indices of the pairs of elements in list L that add up to a number T
+
+L = [2, 7, 11, 15, 3, 6]
+T = 9
+
+def pair_indices(L, T):
+    seen = {}
+    result = []
+
+    for i in range(len(L)):
+        needed = T - L[i]
+
+        if needed in seen:
+            result.append((seen[needed], i))
+
+        seen[L[i]] = i
+
+    return result
+
+print(pair_indices(L,T))
